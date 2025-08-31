@@ -1,197 +1,153 @@
-# FileYourLLC.online - LLC Formation Services Directory
+# LLC Directory Flask Website
 
-A comprehensive directory website for LLC formation services, providing detailed information about top service providers, local business resources, and state-specific guidance.
+A comprehensive Flask web application that provides a directory of LLC formation services across the United States. The application organizes data from a CSV file and presents it in an easy-to-navigate format.
 
-## 🌟 Features
+## Features
 
-- **Top 10 LLC Services Directory** - Detailed reviews and comparisons
-- **State-Specific Pages** - Service availability by state
-- **Local Business Integration** - Connect with local CPAs and accountants
-- **Comprehensive Reviews** - Detailed analysis of each service provider
-- **Mobile-Responsive Design** - Works perfectly on all devices
-- **Modern UI/UX** - Clean, professional design with smooth animations
+- **Top 10 LLC Services**: Features the most popular LLC formation services
+- **State-by-State Coverage**: Each service has dedicated pages for every state they operate in
+- **Detailed Information**: Contact details, ratings, reviews, and service descriptions
+- **Modern UI**: Beautiful, responsive design with Bootstrap 5
+- **API Endpoints**: RESTful API for programmatic access to data
 
-## 🚀 Live Demo
+## Services Included
 
-Visit the live website: [FileYourLLC.online](https://fileyourllc.online)
+1. LegalZoom
+2. Northwestern
+3. Rocket Lawyer
+4. Incfile
+5. ZenBusiness
+6. LegalNature
+7. MyCorporation
+8. BizFilings
+9. CorpNet
+10. Swyft Filings
 
-## 📋 Pages
+## 🚀 Deployment
 
-- **Home** - Overview of top LLC services
-- **Service Pages** - Individual service provider information
-- **State Pages** - State-specific service availability
-- **Top 10 Reviews** - Detailed comparison of top services
-- **About Us** - Information about the directory
-- **Contact** - Contact form and information
-- **Privacy Policy** - Privacy and data collection policies
-- **Terms & Conditions** - Legal terms and affiliate disclosures
+### Vercel Deployment (Recommended)
 
-## 🛠️ Technology Stack
+This project is configured for easy deployment on Vercel:
 
-- **Backend**: Flask (Python)
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Styling**: Bootstrap 5.3.0, Custom CSS
-- **Icons**: Font Awesome 6.4.0
-- **Data**: Pandas for CSV processing
-- **Deployment**: Vercel
+1. **Fork/Clone** this repository to your GitHub account
+2. **Connect to Vercel**:  
+   * Go to [vercel.com](https://vercel.com)  
+   * Sign up/Login with your GitHub account  
+   * Click "New Project"  
+   * Import your GitHub repository  
+   * Vercel will automatically detect the Flask configuration
+3. **Deploy**:  
+   * Vercel will automatically build and deploy your site  
+   * You'll get a live URL (e.g., `https://your-project.vercel.app`)
 
-## 📁 Project Structure
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
 
-```
-rozy/
-├── app.py                 # Main Flask application
-├── vercel.json           # Vercel deployment configuration
-├── requirements.txt      # Python dependencies
-├── README.md            # Project documentation
-├── templates/           # HTML templates
-│   ├── base.html        # Base template with navigation
-│   ├── index.html       # Home page
-│   ├── service.html     # Service provider pages
-│   ├── service_state.html # State-specific pages
-│   ├── top10_llc_services.html # Top 10 reviews
-│   ├── about.html       # About page
-│   ├── contact.html     # Contact page
-│   ├── privacy_policy.html # Privacy policy
-│   └── terms_and_conditions.html # Terms and conditions
-└── LLC Data.csv         # Local business data (not included in repo)
-```
+### Local Development
 
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Python 3.8 or higher
+#### Prerequisites
+- Python 3.7 or higher
 - pip (Python package installer)
 
-### Installation
+#### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/SHOPGEN431/rozy.git
-   cd rozy
-   ```
+1. **Clone or download the project files to your local machine**
 
-2. **Install dependencies**
+2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Run the application**
+3. **Ensure your CSV file is in the correct location**:
+   - The application expects the CSV file at: `C:\rozy\LLC Data.csv`
+   - Make sure the file contains the required columns: name, state, city, phone, full_address, rating, reviews, site, category, type, description, working_hours, logo
+
+4. **Run the application**:
    ```bash
    python app.py
    ```
 
-4. **Open your browser**
-   Navigate to `http://localhost:5000`
+5. **Access the website**:
+   - Open your web browser and go to: `http://localhost:5000`
 
-## 🌐 Deployment
+## Usage
 
-### Vercel Deployment
+### Home Page (`/`)
+- Displays all 10 top LLC services
+- Click on any service to view states where they operate
 
-This project is configured for easy deployment on Vercel:
+### Service Page (`/service/<service_name>`)
+- Shows all states where a specific service operates
+- Displays summary information for each state
+- Click on a state to view detailed services
 
-1. **Connect to Vercel**
-   - Fork this repository
-   - Connect your GitHub account to Vercel
-   - Import the repository
+### State-Specific Page (`/service/<service_name>/<state>`)
+- Lists all LLC services for a specific service in a specific state
+- Shows detailed contact information, ratings, and reviews
+- Provides direct links to websites, phone numbers, and directions
 
-2. **Automatic Deployment**
-   - Vercel will automatically detect the Flask app
-   - The `vercel.json` file handles routing configuration
-   - Deployments happen automatically on git push
+### API Endpoints
+- `/api/services` - Get list of all services
+- `/api/service/<service_name>/states` - Get states for a specific service
 
-3. **Environment Variables**
-   - No additional environment variables required
-   - The app works out of the box
+## File Structure
 
-### Manual Deployment
+```
+C:\rozy\
+├── app.py                 # Main Flask application
+├── requirements.txt       # Python dependencies
+├── vercel.json           # Vercel deployment configuration
+├── DEPLOYMENT.md         # Deployment guide
+├── README.md             # This file
+├── LLC Data.csv          # Your CSV data file
+├── templates/            # HTML templates
+│   ├── base.html         # Base template with styling
+│   ├── index.html        # Home page
+│   ├── service.html      # Service overview page
+│   ├── service_state.html # State-specific service page
+│   ├── top10_llc_services.html # Top 10 services page
+│   ├── about.html        # About page
+│   ├── contact.html      # Contact page
+│   ├── privacy_policy.html # Privacy policy
+│   └── terms_and_conditions.html # Terms and conditions
+└── static/               # Static assets (if any)
+```
 
-If you prefer manual deployment:
-
-1. **Build the application**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Deploy to your preferred platform**
-   - The app is compatible with most Python hosting platforms
-   - Ensure your platform supports Flask applications
-
-## 📊 Data Management
-
-The application uses a CSV file (`LLC Data.csv`) containing local business information. This file is not included in the repository for privacy reasons.
-
-### CSV Structure
-- `name` - Business name
-- `site` - Website URL
-- `state` - State location
-- `city` - City location
-- `category` - Business category
-- `type` - Business type
-- `phone` - Contact phone
-- `full_address` - Complete address
-- `rating` - Business rating
-- `reviews` - Number of reviews
-- `description` - Business description
-- `working_hours` - Operating hours
-- `logo` - Logo URL
-
-## 🔧 Configuration
-
-### Customization
-
-1. **Service Information**: Edit the `SERVICE_INFO` dictionary in `app.py`
-2. **Styling**: Modify CSS in `templates/base.html`
-3. **Content**: Update HTML templates in the `templates/` directory
+## Customization
 
 ### Adding New Services
+Edit the `TOP_LLC_SERVICES` list in `app.py` to add or modify services.
 
-To add a new LLC service:
+### Styling
+Modify the CSS in `templates/base.html` to change the appearance.
 
-1. Add the service name to `TOP_LLC_SERVICES` list
-2. Add service information to `SERVICE_INFO` dictionary
-3. Update navigation in `templates/base.html`
+### Data Source
+Update the `csv_path` variable in the `load_llc_data()` function to point to your CSV file location.
 
-## 📱 Mobile Responsiveness
+## Troubleshooting
 
-The website is fully responsive and optimized for:
-- Desktop computers
-- Tablets
-- Mobile phones
-- All modern browsers
+### Common Issues
 
-## 🔒 Privacy & Legal
+1. **CSV file not found**:
+   - Ensure the CSV file is located at `C:\rozy\LLC Data.csv`
+   - Check file permissions
 
-- **Privacy Policy**: No personal data collection
-- **Terms & Conditions**: Educational information only
-- **Affiliate Disclosure**: Transparent affiliate relationships
-- **Legal Disclaimer**: Not legal advice
+2. **Missing dependencies**:
+   - Run `pip install -r requirements.txt`
 
-## 🤝 Contributing
+3. **Port already in use**:
+   - Change the port in `app.py` line: `app.run(debug=True, host='0.0.0.0', port=5001)`
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+4. **Data not displaying**:
+   - Check that your CSV file has the required columns
+   - Verify the service names in your data match the `TOP_LLC_SERVICES` list
 
-## 📄 License
+## Support
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+For issues or questions, please check:
+1. The CSV file format and location
+2. Python version compatibility
+3. Network connectivity for external resources (Bootstrap, Font Awesome)
 
-## 📞 Support
+## License
 
-For support and questions:
-- Visit the [Contact Page](https://fileyourllc.online/contact)
-- Check the [About Page](https://fileyourllc.online/about) for more information
-
-## 🙏 Acknowledgments
-
-- Bootstrap for the responsive framework
-- Font Awesome for the icons
-- Flask community for the web framework
-- All the LLC service providers listed in the directory
-
----
-
-**Note**: This directory is for educational purposes only. Always consult with qualified legal, tax, and financial professionals before making business decisions.
+This project is open source and available under the MIT License.
