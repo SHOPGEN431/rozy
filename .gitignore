@@ -129,8 +129,8 @@ dmypy.json
 .pyre/
 
 # Sensitive data files
-LLC Data.csv
-*.csv
+# LLC Data.csv
+# *.csv
 *.xlsx
 *.xls
 
