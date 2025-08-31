@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Error - LLC Directory{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-body text-center">
+                    <i class="fas fa-exclamation-triangle fa-4x text-warning mb-4"></i>
+                    <h2 class="card-title">Oops! Something went wrong</h2>
+                    <p class="card-text lead">
+                        {{ message if message else "We encountered an error while processing your request." }}
+                    </p>
+                    <div class="mt-4">
+                        <a href="/" class="btn btn-primary me-2">
+                            <i class="fas fa-home"></i> Go Home
+                        </a>
+                        <button onclick="history.back()" class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-left"></i> Go Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

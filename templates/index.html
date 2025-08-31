@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}LLC Directory - Top Services{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-4">
+                    <i class="fas fa-building"></i> LLC Directory
+                </h1>
+                <p class="lead mb-4">
+                    Discover the top LLC formation services across the United States. 
+                    Find the perfect service for your business needs in any state.
+                </p>
+                <div class="d-flex justify-content-center">
+                    <a href="#services" class="btn btn-light btn-lg me-3">
+                        <i class="fas fa-search"></i> Explore Services
+                    </a>
+                    <a href="/top10-llc-services" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-trophy"></i> Top 10 Reviews
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="services">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-5">
+                <i class="fas fa-star"></i> Top 10 LLC Services
+            </h2>
+        </div>
+    </div>
+    
+    <div class="row">
+        {% for service in top_services %}
+        <div class="col-lg-6 col-md-6 mb-4">
+            <div class="service-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="service-icon me-3">
+                            {% if "LegalZoom" in service %}
+                                <i class="fas fa-gavel"></i>
+                            {% elif "Northwestern" in service %}
+                                <i class="fas fa-shield-alt"></i>
+                            {% elif "Rocket" in service %}
+                                <i class="fas fa-rocket"></i>
+                            {% elif "Incfile" in service %}
+                                <i class="fas fa-file-alt"></i>
+                            {% elif "ZenBusiness" in service %}
+                                <i class="fas fa-leaf"></i>
+                            {% elif "LegalNature" in service %}
+                                <i class="fas fa-balance-scale"></i>
+                            {% elif "MyCorporation" in service %}
+                                <i class="fas fa-corporation"></i>
+                            {% elif "BizFilings" in service %}
+                                <i class="fas fa-briefcase"></i>
+                            {% elif "CorpNet" in service %}
+                                <i class="fas fa-network-wired"></i>
+                            {% elif "Swyft" in service %}
+                                <i class="fas fa-bolt"></i>
+                            {% else %}
+                                <i class="fas fa-building"></i>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h4 class="card-title mb-1">{{ service }}</h4>
+                            {% if service_info and service in service_info %}
+                            <small class="text-muted">{{ service_info[service].base_cost }}</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    {% if service_info and service in service_info %}
+                    <p class="card-text text-muted mb-3">
+                        {{ service_info[service].description[:150] }}{% if service_info[service].description|length > 150 %}...{% endif %}
+                    </p>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong><i class="fas fa-dollar-sign text-primary"></i> Pricing:</strong>
+                            <p class="mb-1">{{ service_info[service].base_cost }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong><i class="fas fa-check-circle text-success"></i> Availability:</strong>
+                            <p class="mb-1">{{ service_info[service].availability }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <strong><i class="fas fa-star text-warning"></i> Key Features:</strong>
+                        <div class="mt-2">
+                            {% for feature in service_info[service].features[:3] %}
+                            <span class="badge bg-light text-dark me-1">{{ feature }}</span>
+                            {% endfor %}
+                            {% if service_info[service].features|length > 3 %}
+                            <span class="badge bg-secondary">+{{ service_info[service].features|length - 3 }} more</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <p class="card-text text-muted mb-4">
+                        Professional LLC formation services with nationwide coverage.
+                    </p>
+                    {% endif %}
+                    
+                    <div class="d-flex gap-2">
+                        <a href="/service/{{ service }}" class="btn btn-primary">
+                            <i class="fas fa-map-marker-alt"></i> View States
+                        </a>
+                        {% if service_info and service in service_info %}
+                        <a href="{{ service_info[service].website }}" target="_blank" class="btn btn-outline-primary">
+                            <i class="fas fa-external-link-alt"></i> Website
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="card-title">
+                        <i class="fas fa-info-circle"></i> About Our Directory
+                    </h3>
+                    <p class="card-text">
+                        Our comprehensive directory features the top 10 LLC formation services, 
+                        providing detailed information about their coverage across all 50 states. 
+                        Each service has dedicated pages showing their local LLC services and 
+                        contact information for every state they operate in.
+                    </p>
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <i class="fas fa-map-marked-alt fa-2x text-primary mb-2"></i>
+                            <h5>State Coverage</h5>
+                            <p>Complete state-by-state breakdown</p>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="fas fa-phone fa-2x text-primary mb-2"></i>
+                            <h5>Contact Info</h5>
+                            <p>Direct contact information</p>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="fas fa-star fa-2x text-primary mb-2"></i>
+                            <h5>Reviews & Ratings</h5>
+                            <p>Customer feedback and ratings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

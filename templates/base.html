@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LLC Directory{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+    <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #f59e0b;
+            --accent-color: #10b981;
+            --dark-color: #1f2937;
+            --light-color: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --border-radius: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Modern Navbar - Full Width */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            padding: 1rem 0;
+            width: 100%;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: var(--gray-600) !important;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color) !important;
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* Main Content - Full Width */
+        .main-content {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 0;
+            box-shadow: var(--shadow-xl);
+            margin: 0;
+            padding: 3rem 2rem;
+            border: none;
+            width: 100%;
+            margin-bottom: 100px;
+        }
+
+        /* Content Wrapper for better readability */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Modern Cards */
+        .card {
+            border: none;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            background: white;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: linear-gradient(135deg, #ffffff 0%, var(--gray-100) 100%);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
+        }
+
+        /* Service Highlight Cards */
+        .service-highlight-card {
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .service-highlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-color);
+        }
+
+        /* Rank Badges */
+        .rank-badge {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .rank-badge:nth-child(1) {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+        }
+
+        .rank-badge:nth-child(2) {
+            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+            box-shadow: 0 4px 12px rgba(156, 163, 175, 0.4);
+        }
+
+        .rank-badge:nth-child(3) {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+        }
+
+        /* Featured Service */
+        .featured-service {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+            border: 3px solid var(--secondary-color) !important;
+            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.3) !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-service::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .featured-service:hover {
+            transform: translateY(-6px) !important;
+            box-shadow: 0 16px 40px rgba(245, 158, 11, 0.4) !important;
+        }
+
+        .featured-rank {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5) !important;
+            font-size: 1.5rem !important;
+            width: 56px !important;
+            height: 56px !important;
+        }
+
+        .featured-title {
+            color: var(--dark-color) !important;
+            font-weight: 700 !important;
+            font-size: 1.5rem !important;
+        }
+
+        .featured-badge {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-align: center;
+            display: inline-block;
+            box-shadow: var(--shadow-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .featured-badge i {
+            margin-right: 0.5rem;
+            color: #fbbf24;
+        }
+
+        /* Modern Buttons */
+        .btn {
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #3730a3 100%);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #d97706 100%);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+        }
+
+        .btn-outline-primary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-info {
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            background: transparent;
+        }
+
+        .btn-outline-info:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-secondary {
+            border: 2px solid var(--gray-500);
+            color: var(--gray-600);
+            background: transparent;
+        }
+
+        .btn-outline-secondary:hover {
+            background: var(--gray-500);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2rem;
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            line-height: 1.4;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-item a:hover {
+            color: var(--primary-dark);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--gray-500);
+        }
+
+        /* Footer - Normal */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 2rem 0;
+            width: 100%;
+            margin-top: 3rem;
+        }
+
+        /* Sticky Top 10 LLC Services Footer - Full Width */
+        .sticky-top10-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            z-index: 9999;
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
+            border-top: 3px solid var(--secondary-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            width: 100%;
+        }
+
+        .sticky-top10-footer .top10-logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #d97706 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sticky-top10-footer h5 {
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin: 0;
+        }
+
+        .sticky-top10-footer p {
+            font-size: 0.875rem;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .sticky-top10-footer .badge {
+            font-size: 0.875rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+        }
+
+        .sticky-top10-footer .btn {
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .sticky-top10-footer .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* List Styles */
+        .list-unstyled li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .list-unstyled i {
+            color: var(--accent-color);
+            font-size: 0.875rem;
+        }
+
+        /* Summary Cards */
+        .summary-card {
+            background: linear-gradient(135deg, var(--gray-100) 0%, white 100%);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .summary-card h5 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card p {
+            color: var(--gray-600);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1.5rem 1rem;
+                margin: 0;
+            }
+
+            .content-wrapper {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .sticky-top10-footer {
+                padding: 0.75rem 0;
+            }
+
+            .sticky-top10-footer h5 {
+                font-size: 1rem;
+            }
+
+            .sticky-top10-footer p {
+                font-size: 0.75rem;
+            }
+
+            .sticky-top10-footer .top10-logo {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .sticky-top10-footer .badge {
+                font-size: 0.75rem;
+                padding: 0.375rem 0.5rem;
+            }
+
+            .sticky-top10-footer .btn {
+                font-size: 0.875rem;
+                padding: 0.375rem 0.75rem;
+            }
+
+            .main-content {
+                margin-bottom: 90px;
+            }
+        }
+
+        /* Utility Classes */
+        .text-primary { color: var(--primary-color) !important; }
+        .text-secondary { color: var(--secondary-color) !important; }
+        .text-success { color: var(--accent-color) !important; }
+        .text-warning { color: var(--secondary-color) !important; }
+        .text-info { color: var(--primary-color) !important; }
+        .text-muted { color: var(--gray-500) !important; }
+
+        .bg-light { background-color: var(--gray-100) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-warning { background-color: var(--secondary-color) !important; }
+        .bg-success { background-color: var(--accent-color) !important; }
+
+        /* Nested Dropdown Styles */
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #ccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #fff;
+        }
+
+        /* Mobile Dropdown Adjustments */
+        @media (max-width: 991.98px) {
+            .dropdown-submenu .dropdown-menu {
+                position: static !important;
+                float: none;
+                width: auto;
+                margin-top: 0;
+                background-color: transparent;
+                border: 0;
+                box-shadow: none;
+            }
+            
+            .dropdown-submenu > a:after {
+                display: none;
+            }
+            
+            .dropdown-submenu .dropdown-item {
+                padding-left: 2rem;
+            }
+        }
+
+        /* Dropdown Header Styling */
+        .dropdown-header {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Dropdown Item Icons */
+        .dropdown-item i {
+            width: 16px;
+            margin-right: 8px;
+        }
+
+        /* Hover Effects */
+        .dropdown-item:hover {
+            background-color: var(--gray-100);
+            color: var(--primary-color);
+        }
+
+        .dropdown-item:active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Main Footer Styles */
+        .main-footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px; /* Space for sticky footer */
+        }
+
+        .footer-content {
+            position: relative;
+        }
+
+        .footer-section {
+            margin-bottom: 30px;
+        }
+
+        .footer-heading {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .footer-text {
+            color: #bdc3c7;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-links a::before {
+            content: '→';
+            margin-right: 8px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .social-link:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(255,193,7,0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            margin-top: 40px;
+        }
+
+        .copyright-text {
+            color: #95a5a6;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .disclaimer-text {
+            color: #95a5a6;
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+        .disclaimer-text a {
+            color: var(--accent-color) !important;
+            text-decoration: none;
+        }
+
+        .disclaimer-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .main-footer {
+                padding: 40px 0 20px;
+                margin-top: 60px;
+            }
+
+            .footer-section {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                text-align: center;
+            }
+
+            .copyright-text,
+            .disclaimer-text {
+                text-align: center !important;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Full Width -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-building"></i> LLC Directory
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    
+                    <!-- LLC Services Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-building"></i> LLC Services
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><h6 class="dropdown-header">Top LLC Services</h6></li>
+                            <li><hr class="dropdown-divider"></li>
+                            
+                            <!-- Northwestern -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-shield-alt text-warning"></i> Northwest Registered Agent
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/Northwestern/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/Northwestern/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/Northwestern/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/Northwestern/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/Northwestern/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/Northwestern">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- LegalZoom -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-gavel text-primary"></i> LegalZoom
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/LegalZoom/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/LegalZoom/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/LegalZoom/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/LegalZoom/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/LegalZoom/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/LegalZoom">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- Rocket Lawyer -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-rocket text-info"></i> Rocket Lawyer
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/Rocket Lawyer/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/Rocket Lawyer/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/Rocket Lawyer/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/Rocket Lawyer/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/Rocket Lawyer/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/Rocket Lawyer">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- Incfile -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-file-alt text-success"></i> Incfile
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/Incfile/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/Incfile/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/Incfile/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/Incfile/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/Incfile/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/Incfile">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- ZenBusiness -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-leaf text-success"></i> ZenBusiness
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/ZenBusiness/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/ZenBusiness/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/ZenBusiness/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/ZenBusiness/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/ZenBusiness/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/ZenBusiness">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- LegalNature -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-balance-scale text-warning"></i> LegalNature
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/LegalNature/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/LegalNature/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/LegalNature/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/LegalNature/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/LegalNature/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/LegalNature">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- MyCorporation -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-building text-primary"></i> MyCorporation
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/MyCorporation/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/MyCorporation/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/MyCorporation/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/MyCorporation/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/MyCorporation/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/MyCorporation">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- BizFilings -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-briefcase text-info"></i> BizFilings
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/BizFilings/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/BizFilings/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/BizFilings/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/BizFilings/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/BizFilings/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/BizFilings">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- CorpNet -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-network-wired text-secondary"></i> CorpNet
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/CorpNet/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/CorpNet/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/CorpNet/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/CorpNet/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/CorpNet/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/CorpNet">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <!-- Swyft Filings -->
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bolt text-warning"></i> Swyft Filings
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">States</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/Swyft Filings/California">California</a></li>
+                                    <li><a class="dropdown-item" href="/service/Swyft Filings/Texas">Texas</a></li>
+                                    <li><a class="dropdown-item" href="/service/Swyft Filings/Florida">Florida</a></li>
+                                    <li><a class="dropdown-item" href="/service/Swyft Filings/New York">New York</a></li>
+                                    <li><a class="dropdown-item" href="/service/Swyft Filings/Illinois">Illinois</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="/service/Swyft Filings">View All States</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/top10-llc-services">
+                                <i class="fas fa-trophy"></i> View All Reviews
+                            </a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/top10-llc-services">
+                            <i class="fas fa-trophy"></i> Top 10 Services
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">
+                            <i class="fas fa-info-circle"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/privacy-policy">
+                            <i class="fas fa-shield-alt"></i> Privacy
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/terms-and-conditions">
+                            <i class="fas fa-file-contract"></i> Terms
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content - Full Width -->
+    <div class="main-content">
+        <div class="content-wrapper">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="container-fluid">
+                <div class="row g-4">
+                    <!-- Company Info -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-section">
+                            <h5 class="footer-heading">
+                                <i class="fas fa-building me-2"></i>FileYourLLC.online
+                            </h5>
+                            <p class="footer-text">
+                                Your trusted directory for LLC formation services and local business resources. 
+                                Find the best services to help you start and grow your business.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" class="social-link" title="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-link" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link" title="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-link" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-section">
+                            <h5 class="footer-heading">
+                                <i class="fas fa-link me-2"></i>Quick Links
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/top10-llc-services">Top 10 Services</a></li>
+                                <li><a href="/about">About Us</a></li>
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Services -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-section">
+                            <h5 class="footer-heading">
+                                <i class="fas fa-briefcase me-2"></i>Services
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="/service/Northwestern">Northwestern</a></li>
+                                <li><a href="/service/LegalZoom">LegalZoom</a></li>
+                                <li><a href="/service/Rocket Lawyer">Rocket Lawyer</a></li>
+                                <li><a href="/service/ZenBusiness">ZenBusiness</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Legal -->
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-section">
+                            <h5 class="footer-heading">
+                                <i class="fas fa-gavel me-2"></i>Legal
+                            </h5>
+                            <ul class="footer-links">
+                                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                                <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+                                <li><a href="/contact">Contact Us</a></li>
+                                <li><a href="/about">About</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Footer -->
+                <div class="footer-bottom">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <p class="copyright-text">
+                                © 2024 FileYourLLC.online. All rights reserved.
+                            </p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <p class="disclaimer-text">
+                                <small>
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Information is for educational purposes only. 
+                                    <a href="/terms-and-conditions" class="text-light">See full disclaimer</a>
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Top 10 LLC Services Footer - Global -->
+    <div class="sticky-top10-footer">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center">
+                        <div class="top10-logo me-3">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-0 text-white">Top 10 LLC Services</h5>
+                            <p class="mb-0 text-white-50">Detailed reviews & comparisons</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <div class="me-3">
+                            <span class="badge bg-warning text-dark">10 Services</span>
+                            <small class="text-white-50 d-block">Ranked & Reviewed</small>
+                        </div>
+                        <a href="/top10-llc-services" class="btn btn-warning btn-sm">
+                            <i class="fas fa-arrow-right"></i> View Reviews
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript for nested dropdowns -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle nested dropdowns
+        const dropdownSubmenus = document.querySelectorAll('.dropdown-submenu');
+        
+        dropdownSubmenus.forEach(function(submenu) {
+            const link = submenu.querySelector('.dropdown-toggle');
+            const submenuDropdown = submenu.querySelector('.dropdown-menu');
+            
+            // Click functionality for all devices
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close other open submenus
+                dropdownSubmenus.forEach(function(otherSubmenu) {
+                    if (otherSubmenu !== submenu) {
+                        otherSubmenu.querySelector('.dropdown-menu').classList.remove('show');
+                    }
+                });
+                
+                // Toggle current submenu
+                submenuDropdown.classList.toggle('show');
+            });
+            
+            // Desktop hover functionality (additional)
+            if (window.innerWidth > 991) {
+                submenu.addEventListener('mouseenter', function() {
+                    submenuDropdown.classList.add('show');
+                });
+                
+                submenu.addEventListener('mouseleave', function() {
+                    submenuDropdown.classList.remove('show');
+                });
+            }
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 991) {
+                document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>

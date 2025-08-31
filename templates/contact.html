@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - FileYourLLC.online{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Hero Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="text-center">
+                <h1 class="display-4 fw-bold text-primary mb-4">
+                    <i class="fas fa-envelope me-3"></i>Contact Us
+                </h1>
+                <p class="lead fs-5 text-muted mb-0">
+                    Have questions about our LLC formation directory? We'd love to hear from you!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="row mb-5">
+        <div class="col-lg-10 mx-auto">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <div class="bg-primary bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-comments fa-2x"></i>
+                        </div>
+                        <h2 class="h3 fw-bold">Get in Touch</h2>
+                        <p class="text-muted">
+                            Fill out the form below and we'll get back to you as soon as possible.
+                        </p>
+                    </div>
+                    
+                    <!-- Google Forms iframe -->
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScWDu_G3xEWyYXBnADc8XgE3E639UkyLn7dRWyKBE7qu3Y9CQ/viewform?embedded=true" 
+                                        frameborder="0" 
+                                        marginheight="0" 
+                                        marginwidth="0"
+                                        style="border-radius: var(--border-radius);">
+                                    Loading…
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Information Section -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="text-center fw-bold mb-5">
+                        <i class="fas fa-info-circle me-3 text-primary"></i>What We Can Help With
+                    </h2>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <div class="bg-warning bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-question-circle fa-lg"></i>
+                                </div>
+                                <h5 class="fw-bold mb-3">General Questions</h5>
+                                <p class="text-muted">
+                                    Questions about our directory, how to use our services, or general LLC formation information.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <div class="bg-success bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-lightbulb fa-lg"></i>
+                                </div>
+                                <h5 class="fw-bold mb-3">Suggestions & Feedback</h5>
+                                <p class="text-muted">
+                                    We welcome your suggestions for improving our directory and feedback about your experience.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <div class="bg-info bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                    <i class="fas fa-tools fa-lg"></i>
+                                </div>
+                                <h5 class="fw-bold mb-3">Technical Support</h5>
+                                <p class="text-muted">
+                                    If you're experiencing any technical issues with our website or need assistance navigating our directory.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="text-center fw-bold mb-5">
+                        <i class="fas fa-question-circle me-3 text-primary"></i>Frequently Asked Questions
+                    </h2>
+                    
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item border-0 mb-3">
+                            <h2 class="accordion-header" id="faq1">
+                                <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                    How do I choose the right LLC formation service?
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our directory provides detailed reviews and comparisons of the top 10 LLC formation services. Consider factors like pricing, features, customer reviews, and your specific business needs when making your decision.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3">
+                            <h2 class="accordion-header" id="faq2">
+                                <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                    Are the services in your directory available in all states?
+                                </button>
+                            </h2>
+                            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Most of the services we feature are available in all 50 states, but availability may vary. Check each service's individual page for state-specific information and requirements.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3">
+                            <h2 class="accordion-header" id="faq3">
+                                <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                    How often do you update your directory information?
+                                </button>
+                            </h2>
+                            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We regularly update our directory to ensure all information is current and accurate. This includes pricing updates, new features, and customer reviews.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3">
+                            <h2 class="accordion-header" id="faq4">
+                                <button class="accordion-button collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                    Can I get help with local business services in my state?
+                                </button>
+                            </h2>
+                            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! Our directory includes local business services like accountants and CPAs in each state. Visit any service's state page to find local professionals who can assist with your LLC formation.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold mb-4">Still Have Questions?</h2>
+                    <p class="lead text-muted mb-4">
+                        If you couldn't find the answer you're looking for, please don't hesitate to reach out through our contact form above.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="/" class="btn btn-primary btn-lg">
+                            <i class="fas fa-home me-2"></i>Back to Directory
+                        </a>
+                        <a href="/about" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-info-circle me-2"></i>Learn More About Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Custom styles for the contact page */
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23666'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+/* Responsive iframe adjustments */
+@media (max-width: 768px) {
+    .ratio-16x9 {
+        --bs-aspect-ratio: 150%;
+    }
+}
+</style>
+{% endblock %}
